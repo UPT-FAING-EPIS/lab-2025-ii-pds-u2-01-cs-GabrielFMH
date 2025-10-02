@@ -1,0 +1,75 @@
+name: Package and Publish NuGet
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Run unit tests with coverage
+      run: dotnet test --no-build --configuration Release --logger trx --results-directory ./test-results --collect:"XPlat Code Coverage"
+
+    - name: Publish test results
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: .NET Tests
+        path: ./test-results/*.trx
+        reporter: dotnet-trx
+        fail-on-error: false
+
+    - name: Analyze with SonarCloud
+      uses: SonarCloud-io/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        args: >
+          -Dsonar.organization=your-sonarcloud-org
+          -Dsonar.projectKey=your-project-key
+          -Dsonar.cs.opencover.reportsPaths=coverage.opencover.xml
+          -Dsonar.cs.vstest.reportsPaths=test-results/**/*.trx
+
+  pack-and-publish:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Pack Bank.Domain
+      run: dotnet pack Bank.Domain/Bank.Domain.csproj --configuration Release --output ./nupkg
+
+    - name: Push to GitHub Packages
+      run: |
+        dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
