@@ -22,10 +22,12 @@ items:
       repo: https://github.com/UPT-FAING-EPIS/lab-2025-ii-pds-u2-01-cs-GabrielFMH.git
     id: ICreditCard
     path: Bank.Domain/ICreditCard.cs
-    startLine: 2
+    startLine: 5
   assemblies:
   - Bank.Domain
   namespace: Bank.Domain
+  summary: Defines the contract for credit card types in the banking system.
+  example: []
   syntax:
     content: public interface ICreditCard
     content.vb: Public Interface ICreditCard
@@ -47,14 +49,17 @@ items:
       repo: https://github.com/UPT-FAING-EPIS/lab-2025-ii-pds-u2-01-cs-GabrielFMH.git
     id: GetCardType
     path: Bank.Domain/ICreditCard.cs
-    startLine: 4
+    startLine: 11
   assemblies:
   - Bank.Domain
   namespace: Bank.Domain
+  summary: Gets the type of the credit card (e.g., MoneyBack, Platinum).
+  example: []
   syntax:
     content: string GetCardType()
     return:
       type: System.String
+      description: The card type as a string.
     content.vb: Function GetCardType() As String
   overload: Bank.Domain.ICreditCard.GetCardType*
 - uid: Bank.Domain.ICreditCard.GetCreditLimit
@@ -75,14 +80,17 @@ items:
       repo: https://github.com/UPT-FAING-EPIS/lab-2025-ii-pds-u2-01-cs-GabrielFMH.git
     id: GetCreditLimit
     path: Bank.Domain/ICreditCard.cs
-    startLine: 5
+    startLine: 17
   assemblies:
   - Bank.Domain
   namespace: Bank.Domain
+  summary: Gets the credit limit for the card.
+  example: []
   syntax:
     content: int GetCreditLimit()
     return:
       type: System.Int32
+      description: The credit limit as an integer.
     content.vb: Function GetCreditLimit() As Integer
   overload: Bank.Domain.ICreditCard.GetCreditLimit*
 - uid: Bank.Domain.ICreditCard.GetAnnualCharge
@@ -103,14 +111,17 @@ items:
       repo: https://github.com/UPT-FAING-EPIS/lab-2025-ii-pds-u2-01-cs-GabrielFMH.git
     id: GetAnnualCharge
     path: Bank.Domain/ICreditCard.cs
-    startLine: 6
+    startLine: 23
   assemblies:
   - Bank.Domain
   namespace: Bank.Domain
+  summary: Gets the annual charge for the card.
+  example: []
   syntax:
     content: int GetAnnualCharge()
     return:
       type: System.Int32
+      description: The annual charge as an integer.
     content.vb: Function GetAnnualCharge() As Integer
   overload: Bank.Domain.ICreditCard.GetAnnualCharge*
 references:

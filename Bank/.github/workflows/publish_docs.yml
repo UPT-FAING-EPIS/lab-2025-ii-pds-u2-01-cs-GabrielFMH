@@ -1,0 +1,44 @@
+name: Publish Documentation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Build project
+      run: dotnet build --configuration Release
+
+    - name: Install dll2mmd
+      run: dotnet tool install -g dll2mmd
+
+    - name: Generate Mermaid diagram
+      run: dll2mmd -f Bank.Domain/bin/Release/net8.0/Bank.Domain.dll -o disenio.md
+
+    - name: Install DocFX
+      run: dotnet tool install -g docfx
+
+    - name: Generate metadata
+      run: docfx metadata
+
+    - name: Build documentation
+      run: docfx build
+
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site

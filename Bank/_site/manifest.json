@@ -1,5 +1,5 @@
 {
-  "source_base_path": "C:/Users/GaboDesktop/Documents/GitHub/lab-2025-ii-pds-u2-01-cs-GabrielFMH/Bank",
+  "source_base_path": "c:/repos/lab-2025-ii-pds-u2-01-cs-GabrielFMH/Bank",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -70,7 +70,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bank.Domain.CreditCardFactoryMethod",
-      "Summary": null
+      "Summary": "<p sourcefile=\"docs/Bank.Domain.CreditCardFactoryMethod.yml\" sourcestartlinenumber=\"1\">Abstract base class for credit card factory methods, implementing the Factory Method pattern.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -84,7 +84,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bank.Domain.ICreditCard",
-      "Summary": null
+      "Summary": "<p sourcefile=\"docs/Bank.Domain.ICreditCard.yml\" sourcestartlinenumber=\"1\">Defines the contract for credit card types in the banking system.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -98,7 +98,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bank.Domain.MoneyBack",
-      "Summary": null
+      "Summary": "<p sourcefile=\"docs/Bank.Domain.MoneyBack.yml\" sourcestartlinenumber=\"1\">Represents a MoneyBack credit card, which provides cashback rewards.\nImplements the <xref href=\"Bank.Domain.ICreditCard\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -126,7 +126,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bank.Domain.Platinum",
-      "Summary": null
+      "Summary": "<p sourcefile=\"docs/Bank.Domain.Platinum.yml\" sourcestartlinenumber=\"1\">Represents a Platinum credit card, offering premium benefits and higher limits.\nImplements the <xref href=\"Bank.Domain.ICreditCard\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -196,7 +196,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Bank.Domain.Titanium",
-      "Summary": null
+      "Summary": "<p sourcefile=\"docs/Bank.Domain.Titanium.yml\" sourcestartlinenumber=\"1\">Represents a Titanium credit card, providing balanced benefits and limits.\nImplements the <xref href=\"Bank.Domain.ICreditCard\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
     },
     {
       "type": "ManagedReference",
